@@ -80,6 +80,7 @@ return average/mixSet.length;
 }
 
 // Iteration #5: Unique arrays
+// This was hard
 const wordsUnique = [
   'crab',
   'poison',
