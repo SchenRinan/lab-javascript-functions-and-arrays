@@ -1,24 +1,47 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
+function maxOfTwoNumbers(num1, num2) {
+  if(num1 > num2){return num1;}
+  if(num1 < num2){return num2;}
+  if(num1 === num2){return num1, num2;}
+}
 
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(longestWord) {
+let wordTest = null;
+for (i = 0; i < longestWord.length ; i++){
+if (wordTest < longestWord[i].length){wordTest = longestWord[i];}
+}
+return wordTest;
+}
 
 
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+function sumNumbers(numbers) {
+  let sum = 0;
+for(i = 0; i < numbers.length; i++){ sum += numbers[i]}
+return sum;
+}
 
 
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(numbers) {
+  let sum = 0;
+for(i = 0; i < numbers.length; i++){
+  if(typeof numbers[i] === "string"){sum += numbers[i].length}
+  else if(typeof numbers[i] === "boolean"){sum += Number(numbers[i])}
+  else if(typeof numbers[i] === "number"){sum += numbers[i]}
+  }
+return sum;
+
+}
 
 
 
@@ -26,16 +49,35 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(numberSet) {
+  let average = null;
+  if(numberSet.length === 0){return null}
+for(i=0;i<numberSet.length;i++){average += numberSet[i]}
+return average/numberSet.length;
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(arraySet) {
+  let average = null;
+  if(arraySet.length === 0){return null}
+for(i=0;i<arraySet.length;i++){average += arraySet[i].length}
+return average/arraySet.length;
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(mixSet) {
+  let average = null;
+  if(mixSet.length === 0){return null}
+  for(i=0;i<mixSet.length;i++){
+  if(typeof mixSet[i] === "string"){average += mixSet[i].length}
+  else if(typeof mixSet[i] === "boolean"){average += Number(mixSet[i])}
+  else if(typeof mixSet[i] === "number"){average += mixSet[i]}
+  }
+return average/mixSet.length;
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -52,8 +94,27 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(set) {
+  const copy  = [];
+  const check = [];
+  const result = [];
+  
+  if(set.length === 0) {return null;}
 
+  for(i=0;i<set.length;i++)
+    {
+      copy.push(set[i]);
+    }
+
+    for(i=0;i<set.length;i++)
+    {
+      check.push(copy[0]);
+      copy.shift();
+      if(copy.includes(check[i])===false){result.push(check[i])}
+      else if(copy.includes(check[i])===true){copy.splice(copy.indexOf(check[i]),1);}
+      if(copy.length === 0){return result;}
+    }    
+}
 
 
 // Iteration #6: Find elements
