@@ -10,10 +10,11 @@ function maxOfTwoNumbers(num1, num2) {
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord(longestWord) {
-let wordTest = null;
-for (i = 0; i < longestWord.length ; i++){
-if (wordTest < longestWord[i].length){wordTest = longestWord[i];}
+function findLongestWord(words) {
+let wordTest = "";
+if(words.length===0){return null}
+for (i = 0; i < words.length ; i++){
+if (wordTest.length < words[i].length){wordTest = words[i];}
 }
 return wordTest;
 }
@@ -38,6 +39,7 @@ for(i = 0; i < numbers.length; i++){
   if(typeof numbers[i] === "string"){sum += numbers[i].length}
   else if(typeof numbers[i] === "boolean"){sum += Number(numbers[i])}
   else if(typeof numbers[i] === "number"){sum += numbers[i]}
+  else {throw new Error("Unsupported data type sir or ma'am")}
   }
 return sum;
 
@@ -109,10 +111,12 @@ function uniquifyArray(set) {
 
     for(i=0;i<set.length;i++)
     {
-      check.push(copy[0]);
+      result.push(copy[0]);
       copy.shift();
-      if(copy.includes(check[i])===false){result.push(check[i])}
-      else if(copy.includes(check[i])===true){copy.splice(copy.indexOf(check[i]),1);}
+      for(;copy.includes(result[i]);)
+        {
+          copy.splice(copy.indexOf(result[i]),1)}
+
       if(copy.length === 0){return result;}
     }    
 }
@@ -121,7 +125,10 @@ function uniquifyArray(set) {
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(anArray, theWord) {
+  if(anArray.length===0){return null}
+  return anArray.includes(theWord);
+}
 
 
 
@@ -140,7 +147,13 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(list, search) {
+let counter = 0;
+for(i=0;i<list.length;i++){
+  if(list[i]===search){counter++;}
+}
+return counter;
+}
 
 
 
@@ -168,9 +181,32 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+  let productPrime = 1;
+  for(i=0; i+3<matrix.length ;i++){
+    for(n=0; n+3<matrix[i].length ; n++){
+      if(matrix[i][n]*matrix[i][n+1]*matrix[i][n+2]*matrix[i][n+3]>productPrime)
+      {productPrime=matrix[i][n]*matrix[i][n+1]*matrix[i][n+2]*matrix[i][n+3]}
+      if(matrix[i][n]*matrix[i+1][n]*matrix[i+2][n]*matrix[i+3][n]>productPrime)
+      {productPrime=matrix[i][n]*matrix[i+1][n]*matrix[i+2][n]*matrix[i+3][n]}
+    }
+  }
+  return productPrime;
+}
 
-
+//Bonus - Iteration #8.2
+function greatestProductOfDiagonals(matrix){
+  let productPrime = 1;
+  for(i=0; i+3<matrix.length ;i++){
+    for(n=0; n+3<matrix[i].length ; n++){
+      if(matrix[i][n]*matrix[i+1][n+1]*matrix[i+2][n+2]*matrix[i+3][n+3]>productPrime)
+      {productPrime=matrix[i][n]*matrix[i+1][n+1]*matrix[i+2][n+2]*matrix[i+3][n+3]}
+      if(matrix[i+3][n]*matrix[i+2][n+1]*matrix[i+1][n+2]*matrix[i][n+3]>productPrime)
+      {productPrime=matrix[i+3][n]*matrix[i+2][n+1]*matrix[i+1][n+2]*matrix[i][n+3]}
+    }
+  }
+  return productPrime;
+}
 
 
 // The following is required to make unit tests work.
